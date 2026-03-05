@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleLogix — Platform Value Proposition</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #080A0E; --dark: #0D1017; --card: #111620; --border: #1E2736;
+    --accent: #00D4FF; --accent2: #FF6B35; --accent3: #7EFF8A;
+    --text: #E8EDF5; --muted: #6B7A96; --gold: #F5C842; --purple: #B57BFF;
+    --pink: #FF4D8F;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* COMPLIANCE */
+  .compliance-banner { background: rgba(245,200,66,0.06); border-bottom: 1px solid rgba(245,200,66,0.2); padding: 12px 0; position: relative; z-index: 1; }
+  .compliance-banner .inner { display: flex; align-items: flex-start; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(245,200,66,0.7); letter-spacing: 0.04em; line-height: 1.6; }
+  .compliance-banner .inner::before { content: '⚖'; font-size: 14px; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%); pointer-events: none; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 9vw, 110px); line-height: 0.92; letter-spacing: 0.01em; color: var(--text); margin-bottom: 28px; }
+  h1 span { color: var(--accent); display: block; }
+  .hero-sub { font-size: 17px; color: var(--muted); max-width: 600px; font-weight: 300; line-height: 1.7; margin-bottom: 20px; }
+  .disclaimer-inline { font-size: 11px; color: rgba(107,122,150,0.7); font-family: 'JetBrains Mono', monospace; font-style: italic; max-width: 600px; line-height: 1.6; padding: 10px 14px; border-left: 2px solid rgba(245,200,66,0.3); background: rgba(245,200,66,0.03); border-radius: 0 6px 6px 0; }
+
+  /* STAT STRIP */
+  .stat-strip { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--border); }
+  .stat-item { padding: 28px 18px; border-right: 1px solid var(--border); transition: background 0.2s; }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(0,212,255,0.03); }
+  .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 30px; line-height: 1; color: var(--accent); display: block; margin-bottom: 6px; }
+  .stat-value.orange { color: var(--accent2); }
+  .stat-value.green { color: var(--accent3); }
+  .stat-value.gold { color: var(--gold); }
+  .stat-value.purple { color: var(--purple); }
+  .stat-value.pink { color: var(--pink); }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; line-height: 1.4; }
+  .stat-est { font-size: 9.5px; color: rgba(107,122,150,0.5); font-family: 'JetBrains Mono', monospace; margin-top: 4px; font-style: italic; }
+
+  /* SECTIONS */
+  .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 36px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); line-height: 1; margin-bottom: 40px; letter-spacing: 0.02em; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .data-table th { background: rgba(0,212,255,0.05); padding: 14px 20px; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 16px 20px; font-size: 13px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: middle; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr.total-row td { background: rgba(0,212,255,0.04); color: var(--text); font-weight: 600; }
+  .data-table tr.indicative-row td { background: rgba(245,200,66,0.03); }
+  .data-table tr.pink-row td { background: rgba(255,77,143,0.03); }
+  .data-table td small { display: block; font-size: 11px; color: rgba(107,122,150,0.6); margin-top: 2px; font-weight: 300; }
+  .data-table td.c-accent { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-green { color: var(--accent3); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-gold { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-orange { color: var(--accent2); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-purple { color: var(--purple); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-pink { color: var(--pink); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+  /* FORMULA */
+  .formula { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 18px 24px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin: 16px 0; line-height: 2; }
+  .formula .result { color: var(--accent); font-weight: 700; font-size: 15px; }
+  .formula.green { border-left-color: var(--accent3); } .formula.green .result { color: var(--accent3); }
+  .formula.orange { border-left-color: var(--accent2); } .formula.orange .result { color: var(--accent2); }
+  .formula.gold { border-left-color: var(--gold); } .formula.gold .result { color: var(--gold); }
+  .formula.purple { border-left-color: var(--purple); } .formula.purple .result { color: var(--purple); }
+  .formula.pink { border-left-color: var(--pink); } .formula.pink .result { color: var(--pink); }
+
+  /* INDICATIVE BADGE */
+  .ind-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(245,200,66,0.08); border: 1px solid rgba(245,200,66,0.2); padding: 3px 10px; border-radius: 4px; margin-bottom: 16px; }
+  .ind-badge::before { content: '~'; font-size: 12px; }
+  .confirmed-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent3); background: rgba(126,255,138,0.08); border: 1px solid rgba(126,255,138,0.2); padding: 3px 10px; border-radius: 4px; margin-bottom: 16px; }
+  .confirmed-badge::before { content: '✓'; font-size: 11px; }
+
+  /* LOVABLE COMPARE */
+  .lovable-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2px; background: var(--border); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 16px; align-items: stretch; }
+  .lv-cell { background: var(--card); padding: 36px 28px; text-align: center; }
+  .lv-cell.middle { background: var(--dark); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 16px; gap: 8px; }
+  .lv-cell.middle .arr { font-size: 28px; color: var(--pink); }
+  .lv-cell.middle .lbl { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--pink); line-height: 1; }
+  .lv-cell.middle .sub { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-align: center; letter-spacing: 0.08em; }
+  .lv-cell .lv-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+  .lv-cell .lv-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 1; }
+  .lv-cell.before .lv-num { color: var(--accent2); }
+  .lv-cell.after .lv-num { color: var(--accent3); }
+  .lv-cell .lv-sub { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LOVABLE REVENUE CARD */
+  .revenue-direction { background: linear-gradient(135deg, rgba(255,77,143,0.07), rgba(255,77,143,0.02)); border: 1px solid rgba(255,77,143,0.25); border-radius: 12px; padding: 36px; margin-top: 20px; }
+  .revenue-direction .rd-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .revenue-direction .rd-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); background: rgba(255,77,143,0.1); padding: 4px 12px; border-radius: 4px; }
+  .revenue-direction h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--pink); letter-spacing: 0.04em; }
+  .revenue-direction p { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; max-width: 680px; margin-bottom: 20px; }
+  .rd-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .rd-scenario { background: rgba(0,0,0,0.2); border: 1px solid rgba(255,77,143,0.12); border-radius: 8px; padding: 18px; }
+  .rd-scenario .sc-label { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: rgba(255,77,143,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .rd-scenario .sc-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--pink); line-height: 1; }
+  .rd-scenario .sc-sub { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 300; line-height: 1.4; }
+
+  /* AI LAYERS */
+  .ai-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .ai-layer-card { border-radius: 12px; padding: 28px; border: 1px solid var(--border); }
+  .ai-layer-card.layer1 { background: linear-gradient(135deg, rgba(181,123,255,0.08), rgba(181,123,255,0.02)); border-color: rgba(181,123,255,0.25); }
+  .ai-layer-card.layer2 { background: linear-gradient(135deg, rgba(245,200,66,0.07), rgba(245,200,66,0.01)); border-color: rgba(245,200,66,0.2); }
+  .ai-layer-card .layer-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; display: inline-block; margin-bottom: 14px; }
+  .layer1 .layer-badge { color: var(--purple); background: rgba(181,123,255,0.1); }
+  .layer2 .layer-badge { color: var(--gold); background: rgba(245,200,66,0.1); }
+  .ai-layer-card .layer-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.03em; margin-bottom: 8px; }
+  .layer1 .layer-title { color: var(--purple); }
+  .layer2 .layer-title { color: var(--gold); }
+  .ai-layer-card .layer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; margin-bottom: 16px; }
+  .ai-layer-card .layer-saving { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; }
+  .layer1 .layer-saving { color: var(--purple); }
+  .layer2 .layer-saving { color: var(--gold); }
+  .ai-layer-card .layer-saving-sub { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  /* CONV GRID */
+  .conv-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2px; background: var(--border); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 16px; align-items: stretch; }
+  .conv-cell { background: var(--card); padding: 36px 28px; text-align: center; }
+  .conv-cell.arrow-cell { background: var(--dark); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 16px; gap: 8px; }
+  .conv-cell.arrow-cell .arr { font-size: 28px; color: var(--accent2); }
+  .conv-cell.arrow-cell .pct { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--accent2); line-height: 1; }
+  .conv-cell.arrow-cell .pct-label { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-align: center; letter-spacing: 0.08em; }
+  .conv-cell .conv-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+  .conv-cell .conv-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; color: var(--muted); }
+  .conv-cell.after .conv-num { color: var(--accent3); }
+  .conv-cell .conv-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  /* MARKETPLACE GRID */
+  .marketplace-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .mkt-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; position: relative; overflow: hidden; }
+  .mkt-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); }
+  .mkt-card .mkt-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .mkt-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .mkt-card .mkt-formula { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin: 10px 0; line-height: 1.8; background: rgba(0,0,0,0.2); border-radius: 6px; padding: 10px 14px; }
+  .mkt-card .mkt-range { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); line-height: 1; margin-top: 12px; }
+  .mkt-card .mkt-range-sub { font-size: 11px; color: rgba(245,200,66,0.5); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  /* VALUE STACK */
+  .value-stack { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+  .value-stack-row { display: grid; grid-template-columns: 1fr 160px 160px; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .value-stack-row:hover { background: rgba(255,255,255,0.01); }
+  .value-stack-row:last-child { border-bottom: none; }
+  .value-stack-row.header { background: rgba(0,212,255,0.04); }
+  .value-stack-row.header .vs-cell { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 20px; }
+  .value-stack-row.subtotal-row { background: rgba(0,212,255,0.03); border-top: 1px solid rgba(0,212,255,0.15); }
+  .value-stack-row.indicative-row { background: rgba(245,200,66,0.03); border-top: 1px dashed rgba(245,200,66,0.2); }
+  .value-stack-row.pink-ind-row { background: rgba(255,77,143,0.03); border-top: 1px dashed rgba(255,77,143,0.2); }
+  .value-stack-row.total-row { background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(126,255,138,0.04)); border-top: 2px solid rgba(0,212,255,0.2); }
+  .vs-cell { padding: 18px 20px; display: flex; align-items: center; font-size: 13px; color: var(--muted); border-right: 1px solid var(--border); }
+  .vs-cell:last-child { border-right: none; }
+  .vs-cell.label-cell { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .vs-cell.label-cell strong { font-size: 14px; color: var(--text); font-weight: 500; }
+  .vs-cell.label-cell small { font-size: 11px; color: var(--muted); font-weight: 300; }
+  .vs-cell.label-cell .row-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-top: 4px; display: inline-block; }
+  .row-tag.confirmed { color: var(--accent3); background: rgba(126,255,138,0.07); }
+  .row-tag.indicative { color: var(--gold); background: rgba(245,200,66,0.08); }
+  .row-tag.revenue { color: var(--pink); background: rgba(255,77,143,0.08); }
+  .vs-cell.num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--accent); justify-content: flex-end; }
+  .vs-cell.num.high { color: var(--accent3); }
+  .vs-cell.num.gold { color: var(--gold); }
+  .vs-cell.num.purple { color: var(--purple); }
+  .vs-cell.num.pink { color: var(--pink); }
+  .value-stack-row.subtotal-row .vs-cell.num,
+  .value-stack-row.total-row .vs-cell.num { font-size: 26px; }
+  .value-stack-row.subtotal-row .vs-cell.label-cell strong,
+  .value-stack-row.total-row .vs-cell.label-cell strong { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.04em; }
+
+  /* BIG TOTAL */
+  .big-total { background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(126,255,138,0.04), rgba(245,200,66,0.03)); border: 1px solid rgba(0,212,255,0.2); border-radius: 16px; padding: 52px 40px; text-align: center; position: relative; overflow: hidden; }
+  .big-total::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 200px; background: radial-gradient(ellipse, rgba(0,212,255,0.08), transparent 70%); pointer-events: none; }
+  .big-total .bt-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; }
+  .big-total .bt-sublabel { font-size: 11px; color: var(--gold); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; margin-bottom: 20px; }
+  .big-total .bt-range { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); line-height: 1; color: var(--text); margin-bottom: 8px; }
+  .big-total .bt-range span { color: var(--accent3); }
+  .big-total .bt-range-upside { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 4vw, 44px); color: var(--gold); line-height: 1; margin-bottom: 16px; }
+  .big-total .bt-sub { font-size: 14px; color: var(--muted); font-weight: 300; max-width: 540px; margin: 0 auto 28px; line-height: 1.7; }
+  .big-total .bt-disclaimer { font-size: 10.5px; color: rgba(107,122,150,0.55); font-family: 'JetBrains Mono', monospace; border-top: 1px solid var(--border); padding-top: 20px; line-height: 1.8; font-style: italic; text-align: left; }
+
+  /* IP */
+  .ip-block { background: linear-gradient(135deg, rgba(245,200,66,0.06), rgba(245,200,66,0.02)); border: 1px solid rgba(245,200,66,0.2); border-radius: 12px; padding: 36px; margin-bottom: 24px; }
+  .ip-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); margin-bottom: 12px; letter-spacing: 0.04em; }
+  .ip-block p { font-size: 14px; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 680px; }
+  .ip-block .ip-val { margin-top: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); line-height: 1; }
+  .ip-block .ip-val-sub { font-size: 11px; color: rgba(245,200,66,0.5); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  /* CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+  .card:hover::before { opacity: 1; }
+  .card.accent2::before { background: var(--accent2); } .card.accent3::before { background: var(--accent3); }
+  .card.gold::before { background: var(--gold); } .card.purple::before { background: var(--purple); } .card.pink::before { background: var(--pink); }
+  .card-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+  .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.04em; margin-bottom: 10px; color: var(--text); }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .card .metric { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); background: rgba(0,212,255,0.07); padding: 6px 12px; border-radius: 4px; display: inline-block; }
+  .card.accent2 .metric { color: var(--accent2); background: rgba(255,107,53,0.07); }
+  .card.accent3 .metric { color: var(--accent3); background: rgba(126,255,138,0.07); }
+  .card.gold .metric { color: var(--gold); background: rgba(245,200,66,0.07); }
+  .card.purple .metric { color: var(--purple); background: rgba(181,123,255,0.07); }
+  .card.pink .metric { color: var(--pink); background: rgba(255,77,143,0.07); }
+
+  /* MODULES */
+  .modules-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .module-tag { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 8px 16px; font-size: 13px; color: var(--text); font-weight: 500; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+  .module-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.05); }
+  .module-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* BIZ LIST */
+  .biz-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .biz-list li { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 12px; font-weight: 300; }
+  .biz-list li::before { content: '→'; color: var(--accent2); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* LEGAL */
+  .legal-footer { background: rgba(245,200,66,0.03); border-top: 1px solid rgba(245,200,66,0.15); padding: 36px 0; }
+  .legal-footer .inner { font-size: 10.5px; color: rgba(107,122,150,0.55); font-family: 'JetBrains Mono', monospace; line-height: 1.85; font-style: italic; }
+  .legal-footer .inner strong { color: rgba(245,200,66,0.6); font-style: normal; display: block; margin-bottom: 8px; letter-spacing: 0.1em; font-size: 9px; text-transform: uppercase; }
+  .footer { padding: 32px 0; }
+  .footer .inner { display: flex; justify-content: space-between; align-items: center; }
+  .footer .brand { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.1em; color: var(--muted); }
+  .footer .note { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero, .stat-strip, .section { animation: fadeUp 0.6s ease both; }
+
+  @media (max-width: 768px) {
+    .stat-strip { grid-template-columns: repeat(3, 1fr); }
+    .cards-grid, .ai-layers, .marketplace-grid, .rd-scenarios { grid-template-columns: 1fr; }
+    .biz-list { grid-template-columns: 1fr; }
+    .conv-grid, .lovable-compare { grid-template-columns: 1fr; }
+    .value-stack-row { grid-template-columns: 1fr 110px 110px; }
+    h1 { font-size: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="compliance-banner">
+  <div class="container">
+    <div class="inner">FORWARD-LOOKING STATEMENT — Confirmed figures based on operational benchmarks. Indicative figures (~) are illustrative projections only. Revenue directions presented as potential, not guaranteed income. All assumptions disclosed. Internal strategic planning purposes only.</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="eyebrow">ScaleLogix — Platform Value Proposition</div>
+    <h1>THE ROI IS<span>UNDENIABLE.</span></h1>
+    <p class="hero-sub">Six confirmed value drivers, two indicative revenue directions, and one proprietary IP asset — quantified at every layer with every assumption disclosed.</p>
+    <div class="disclaimer-inline">Confirmed figures derived from operational benchmarks. Items marked (~) are indicative projections — presented to illustrate potential, not to guarantee outcome.</div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item">
+    <span class="stat-value">250h</span>
+    <div class="stat-label">Hours Recovered / Mo</div>
+    <div class="stat-est">confirmed</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value pink">$0</span>
+    <div class="stat-label">Lovable Cost</div>
+    <div class="stat-est">was $500+/mo · eliminated</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value orange">$98K–$218K</span>
+    <div class="stat-label">Confirmed Value / Mo</div>
+    <div class="stat-est">6 quantified factors</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value gold">+$1.5M</span>
+    <div class="stat-label">Indicative Upside</div>
+    <div class="stat-est">~ Model B marketplace ceiling</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value green">$3.5M–$13M</span>
+    <div class="stat-label">Confirmed IP Value</div>
+    <div class="stat-est">est. 3–5× confirmed ARR</div>
+  </div>
+</div>
+
+<!-- 01 TIME -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">01 — Time Recovery</div>
+    <h2>250 HOURS.<br>EVERY MONTH.</h2>
+    <table class="data-table">
+      <thead><tr><th>Factor</th><th>Seconds / Month</th><th>Minutes / Month</th><th>Hours / Month</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--text)">Dev Build Time</strong><small>7.5 hrs saved × 20 builds/month</small></td><td class="c-accent">540,000</td><td class="c-accent">9,000</td><td class="c-accent">150</td><td>8 hrs → 30 min per build</td></tr>
+        <tr><td><strong style="color:var(--text)">Maintenance</strong><small>100 agencies × 10 min manual → eliminated</small></td><td class="c-green">60,000</td><td class="c-green">1,000</td><td class="c-green">16.7</td><td>Automated vs manual today</td></tr>
+        <tr><td><strong style="color:var(--text)">Context Switching</strong><small>20 people × 10 platforms × 5s × 100×/day × 30 days</small></td><td class="c-orange">300,000</td><td class="c-orange">5,000</td><td class="c-orange">83.3</td><td>VP, dev, onboarding, task mgr</td></tr>
+        <tr class="total-row"><td><strong>TOTAL RECOVERED</strong></td><td class="c-gold">900,000</td><td class="c-gold">15,000</td><td class="c-gold">250</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="formula">250 hrs = <span class="result">6.25 full 40-hr working weeks reclaimed every single month</span></div>
+  </div>
+</div>
+
+<!-- 02 LABOR -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">02 — Labor Efficiency Savings</div>
+    <h2>$5K–$10K<br>IN PURE LABOR.</h2>
+    <table class="data-table">
+      <thead><tr><th>Factor</th><th>Hours / Month</th><th>@ $20/hr</th><th>@ $40/hr</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--text)">Dev Build Time</strong></td><td class="c-accent">150</td><td>$3,000</td><td class="c-green">$6,000</td></tr>
+        <tr><td><strong style="color:var(--text)">Maintenance</strong></td><td class="c-accent">16.7</td><td>$334</td><td class="c-green">$668</td></tr>
+        <tr><td><strong style="color:var(--text)">Context Switching</strong></td><td class="c-accent">83.3</td><td>$1,666</td><td class="c-green">$3,332</td></tr>
+        <tr class="total-row"><td><strong>TOTAL LABOR SAVED</strong><small>blended $20–$40/hr</small></td><td class="c-gold">250 hrs</td><td class="c-accent">$5,000/mo</td><td class="c-green">$10,000/mo</td></tr>
+      </tbody>
+    </table>
+    <div class="formula green">Hard cost savings on existing team. Not opportunity cost.<br><span class="result">Platform pays for itself before a single new client signs.</span></div>
+  </div>
+</div>
+
+<!-- 03 LOVABLE -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">03 — Lovable / Tool Cost Elimination</div>
+    <h2>$500–$2,000/MO<br>TO ZERO.</h2>
+
+    <div class="confirmed-badge">Confirmed — GitHub + Vercel replaces Lovable at $0 infrastructure cost</div>
+
+    <div class="lovable-compare">
+      <div class="lv-cell before">
+        <div class="lv-label">Lovable Today</div>
+        <div class="lv-num">$500+</div>
+        <div class="lv-sub">per month subscription<br>scales with builds & usage<br>at 20 builds/mo: $500–$2,000+</div>
+      </div>
+      <div class="lv-cell middle">
+        <div class="arr">→</div>
+        <div class="lbl">REPLACED</div>
+        <div class="sub">GitHub + Vercel<br>zero cost</div>
+      </div>
+      <div class="lv-cell after">
+        <div class="lv-label">ScaleLogix Platform</div>
+        <div class="lv-num">$0</div>
+        <div class="lv-sub">infrastructure cost per build<br>revenue from websites unchanged<br>100% margin on every build</div>
+      </div>
+    </div>
+
+    <div class="formula pink">
+      20 builds/month on Lovable at scale = $500–$2,000+/mo depending on plan and credits used.<br>
+      Platform replaces this entirely with GitHub + Vercel hosting.<br>
+      <span class="result">Saving: $500–$2,000/mo confirmed. Revenue per site: unchanged. Margin: 100%.</span>
+    </div>
+
+    <!-- BUILDER AS A SERVICE -->
+    <div class="revenue-direction">
+      <div class="rd-header">
+        <div class="rd-tag">~ Indicative Revenue Direction</div>
+        <h3>Offer the Builder as a Service — Compete With Lovable</h3>
+      </div>
+      <p>ScaleLogix already has the website builder infrastructure running at $0 cost per build. That same capability can be offered to other agencies and organisations as a white-labelled service — the same model Lovable runs, but owned outright, with no per-build cost and no licensing dependency. Three indicative scenarios based on volume and pricing:</p>
+      <div class="rd-scenarios">
+        <div class="rd-scenario">
+          <div class="sc-label">Conservative · 5 agencies</div>
+          <div class="sc-num">$10K</div>
+          <div class="sc-sub">5 agency clients × $2K/mo white-label access</div>
+        </div>
+        <div class="rd-scenario">
+          <div class="sc-label">Mid · 10 agencies + 2 orgs</div>
+          <div class="sc-num">$40K</div>
+          <div class="sc-sub">10 × $2K + 2 × $10K = $40K/mo recurring</div>
+        </div>
+        <div class="rd-scenario">
+          <div class="sc-label">Scale · 20 agencies + 5 orgs</div>
+          <div class="sc-num">$90K</div>
+          <div class="sc-sub">20 × $2K + 5 × $10K = $90K/mo pure margin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 AI HEADCOUNT -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">04 — AI + Platform Headcount Reduction</div>
+    <h2>TWO LAYERS.<br>TWO SAVINGS.</h2>
+    <div class="ai-layers">
+      <div class="ai-layer-card layer1">
+        <div class="layer-badge">Layer 1 — Platform Alone · Now</div>
+        <div class="layer-title">5–10 People Eliminated</div>
+        <div class="layer-desc">From the current ~40 mixed team. Platform absorbs manual dev, maintenance, and ops overhead that currently requires people.</div>
+        <div class="layer-saving">$5K–$20K<span style="font-size:18px;color:var(--muted)">/mo</span></div>
+        <div class="layer-saving-sub">5–10 people × $1K–$2K/mo</div>
+      </div>
+      <div class="ai-layer-card layer2">
+        <div class="layer-badge">Layer 2 — Platform + AI · Future</div>
+        <div class="layer-title">25–30 Hires Never Made</div>
+        <div class="layer-desc">Of 40 extra people needed to scale, platform + AI brings that to 10–15. 25–30 salaries that never go on the books.</div>
+        <div class="layer-saving">$25K–$60K<span style="font-size:18px;color:var(--muted)">/mo</span></div>
+        <div class="layer-saving-sub">25–30 people × $1K–$2K/mo · prevented expenditure</div>
+      </div>
+    </div>
+    <div class="formula purple">Layer 1 is real today. Layer 2 activates when AI is integrated.<br><span class="result">Combined: $30K–$80K/mo. Cost that either disappears or never exists.</span></div>
+  </div>
+</div>
+
+<!-- 05 CONVERSION -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">05 — Sales Conversion Uplift</div>
+    <h2>MORE CLOSES.<br>JUST BY SHOWING IT.</h2>
+    <div class="conv-grid">
+      <div class="conv-cell">
+        <div class="conv-label">Current Baseline</div>
+        <div class="conv-num">10+</div>
+        <div class="conv-sub">deals/month · $30K–$60K one-time · $1.5K–$3K/mo retainer</div>
+      </div>
+      <div class="conv-cell arrow-cell">
+        <div class="arr">→</div>
+        <div class="pct">+15–20%</div>
+        <div class="pct-label">estimated<br>demo effect</div>
+      </div>
+      <div class="conv-cell after">
+        <div class="conv-label">With Platform Demo</div>
+        <div class="conv-num">12–13</div>
+        <div class="conv-sub">deals/month projected · conservative floor</div>
+      </div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Scenario</th><th>Deals/Mo</th><th>One-Time Revenue</th><th>New MRR Added</th><th>Monthly Uplift</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--text)">Without Platform</strong></td><td>10</td><td>$300K–$600K</td><td>$15K–$30K</td><td style="color:var(--muted)">baseline</td></tr>
+        <tr><td><strong style="color:var(--text)">With Platform</strong></td><td class="c-green">12</td><td class="c-green">$360K–$720K</td><td class="c-green">$18K–$36K</td><td class="c-green">+$60K–$120K</td></tr>
+        <tr class="total-row"><td><strong>MONTHLY UPLIFT</strong></td><td class="c-gold">+2 deals</td><td class="c-gold">+$60K–$120K</td><td class="c-gold">+$3K–$6K</td><td class="c-gold">compounds monthly</td></tr>
+      </tbody>
+    </table>
+    <div class="formula orange">+2 deals/month × 12 months = 24 additional clients in year one.<br><span class="result">MRR compounds — the gap widens every single month.</span></div>
+  </div>
+</div>
+
+<!-- 06 MARKETPLACE -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">06 — AI Marketplace Revenue · Indicative</div>
+    <h2>CLIENT'S CLIENTS.<br>ASYNC REVENUE.</h2>
+    <div class="ind-badge">Indicative projections only — monetisation model not yet finalised</div>
+    <p style="font-size:14px; color:var(--muted); font-weight:300; max-width:680px; line-height:1.75; margin-bottom:28px;">200–1,000 of your clients' clients transacting inside the platform. Two monetisation models shown — neither confirmed, both realistic given the architecture already supports it.</p>
+    <div class="marketplace-grid">
+      <div class="mkt-card">
+        <span class="mkt-icon">🪑</span>
+        <h3>Model A — Seat Fee</h3>
+        <div class="mkt-formula">200–1,000 users<br>× $50–$100/user/month</div>
+        <div class="mkt-range">$10K–$100K<span style="font-size:18px;color:rgba(245,200,66,0.5)">/mo</span></div>
+        <div class="mkt-range-sub">~ indicative · low = 200 × $50 · high = 1,000 × $100</div>
+      </div>
+      <div class="mkt-card">
+        <span class="mkt-icon">✂️</span>
+        <h3>Model B — Transaction Cut</h3>
+        <div class="mkt-formula">
+          200–1,000 users<br>
+          × avg $5,000–$10,000 deal value<br>
+          × 10–15% platform cut<br>
+          <br>
+          Low: 200 × $5K × 10% = $100K/mo<br>
+          High: 1,000 × $10K × 15% = $1.5M/mo
+        </div>
+        <div class="mkt-range">$100K–$1.5M<span style="font-size:18px;color:rgba(245,200,66,0.5)">/mo</span></div>
+        <div class="mkt-range-sub">~ indicative · avg deal $5K–$10K · formula fully disclosed</div>
+      </div>
+    </div>
+    <div class="formula gold">Zero additional infrastructure required — architecture already supports this.<br><span class="result">Activating either model adds pure-margin revenue on top of every confirmed figure.</span></div>
+  </div>
+</div>
+
+<!-- 07 FULL STACK -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">07 — Total Monthly Value Stack</div>
+    <h2>EVERYTHING.<br>ONE TABLE.</h2>
+
+    <div class="value-stack">
+      <div class="value-stack-row header">
+        <div class="vs-cell">Value Driver · All Figures Per Month</div>
+        <div class="vs-cell">Low / Month</div>
+        <div class="vs-cell">High / Month</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>① Labor Efficiency</strong><small>250 hrs @ $20–$40/hr blended</small><span class="row-tag confirmed">confirmed</span></div>
+        <div class="vs-cell num">$5,000</div><div class="vs-cell num high">$10,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>② Lovable Cost Eliminated</strong><small>$500–$2,000/mo subscription → $0 on GitHub + Vercel</small><span class="row-tag confirmed">confirmed</span></div>
+        <div class="vs-cell num pink">$500</div><div class="vs-cell num pink">$2,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>③ Platform — Team Reduction</strong><small>5–10 people eliminated now @ $1K–$2K/mo</small><span class="row-tag confirmed">confirmed</span></div>
+        <div class="vs-cell num purple">$5,000</div><div class="vs-cell num purple">$20,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>④ AI — Hiring Prevented</strong><small>25–30 of 40 extra hires never made @ $1K–$2K/mo</small><span class="row-tag confirmed">confirmed · AI-dependent</span></div>
+        <div class="vs-cell num gold">$25,000</div><div class="vs-cell num gold">$60,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>⑤ Conversion — One-Time</strong><small>+2 deals × $30K–$60K avg ticket</small><span class="row-tag confirmed">confirmed</span></div>
+        <div class="vs-cell num">$60,000</div><div class="vs-cell num high">$120,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell"><strong>⑥ Conversion — New MRR</strong><small>+2 retainers × $1.5K–$3K/mo</small><span class="row-tag confirmed">confirmed</span></div>
+        <div class="vs-cell num">$3,000</div><div class="vs-cell num high">$6,000</div>
+      </div>
+      <div class="value-stack-row subtotal-row">
+        <div class="vs-cell label-cell"><strong>CONFIRMED SUBTOTAL</strong><small>6 quantified factors · per month</small></div>
+        <div class="vs-cell num">$98,500<span style="font-size:13px;color:var(--muted)">/mo</span></div><div class="vs-cell num high">$218,000<span style="font-size:13px;color:var(--muted)">/mo</span></div>
+      </div>
+      <div class="value-stack-row indicative-row">
+        <div class="vs-cell label-cell"><strong>⑦ AI Marketplace</strong><small>Model A: seat fee $10K–$100K · Model B: 200–1,000 users × $5K–$10K deal × 10–15% cut = $100K–$1.5M</small><span class="row-tag indicative">~ indicative</span></div>
+        <div class="vs-cell num gold">+$10,000</div><div class="vs-cell num gold">+$1,500,000</div>
+      </div>
+      <div class="value-stack-row pink-ind-row">
+        <div class="vs-cell label-cell"><strong>⑧ Builder-as-a-Service</strong><small>White-label website builder to agencies & orgs</small><span class="row-tag revenue">~ revenue direction</span></div>
+        <div class="vs-cell num pink">+$10,000</div><div class="vs-cell num pink">+$90,000</div>
+      </div>
+      <div class="value-stack-row total-row">
+        <div class="vs-cell label-cell"><strong>FULL RANGE INCL. INDICATIVE</strong><small>all 8 factors · per month · excludes IP licensing & white-label MRR base</small></div>
+        <div class="vs-cell num">$118,500<span style="font-size:13px;color:var(--muted)">/mo</span></div><div class="vs-cell num high">$1,808,000<span style="font-size:13px;color:var(--muted)">/mo</span></div>
+      </div>
+    </div>
+
+    <div class="big-total">
+      <div class="bt-label">Confirmed Monthly Value — 6 Quantified Factors</div>
+      <div class="bt-range">$98.5K — <span>$218K</span></div>
+      <div class="bt-range-upside">~ With indicative upside: $118K — $1.8M / mo</div>
+      <div class="bt-sub">Confirmed floor is based entirely on operational benchmarks with fully disclosed assumptions. The indicative ceiling is dominated by Model B marketplace — 1,000 users transacting at $10K avg deal with a 15% platform cut. That number is real if the volume is real.</div>
+      <div class="bt-disclaimer">
+        ⚖ DISCLOSED ASSUMPTIONS: (1) Labour $20–$40/hr blended; (2) Lovable replacement saving $500–$2,000/mo at 20 builds/month; (3) Platform eliminates 5–10 roles at $1K–$2K/mo; (4) Platform + AI prevents 25–30 of 40 future hires; (5) 10+ baseline deals at $30K–$60K + $1.5K–$3K/mo retainer with 15–20% conversion uplift; (6) Marketplace Model A: 200–1,000 users at $50–$100/mo seat fee; Model B: 200–1,000 users transacting at avg $5K–$10K deal value with 10–15% platform cut — model not finalised, user volume not confirmed; (7) Builder-as-a-service: 5–20 agency licensees at $2K/mo + 2–5 org licensees at $10K/mo — indicative only, no contracts in place. All confirmed figures are estimated ranges. Indicative figures are illustrative only. This document does not constitute a financial offering, investment advice, or contractual commitment.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 IP -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">08 — Intellectual Property</div>
+    <h2>YOU OWN<br>THE ASSET.</h2>
+    <div class="ip-block">
+      <h3>Proprietary Platform IP — Corrected Valuation</h3>
+      <p>The previously cited "$1M–$3M+" figure understates reality. Based on confirmed monthly output alone — $98.5K–$218K/month — the implied asset value at standard SaaS multiples of 3–5× ARR is $3.5M–$13M. With indicative marketplace upside included, the ceiling extends significantly further. All figures below calculated from March 2026 forward.</p>
+
+      <div style="margin-top:28px; margin-bottom:8px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Confirmed Figures Only — 6 Quantified Factors</div>
+        <table class="data-table" style="margin-bottom:0;">
+          <thead><tr><th>Period</th><th>Low / Month</th><th>High / Month</th><th>Low Total</th><th>High Total</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--text)">Per Month</strong></td><td class="c-accent">$98,500</td><td class="c-green">$218,000</td><td style="color:var(--muted)">—</td><td style="color:var(--muted)">—</td></tr>
+            <tr><td><strong style="color:var(--text)">Per Year (×12)</strong></td><td class="c-accent">$1,182,000</td><td class="c-green">$2,616,000</td><td style="color:var(--muted)">—</td><td style="color:var(--muted)">—</td></tr>
+            <tr class="total-row"><td><strong>2 Years · Mar 2026 → Mar 2028</strong></td><td class="c-accent">$98,500/mo</td><td class="c-green">$218,000/mo</td><td class="c-gold">$2,364,000</td><td class="c-green">$5,232,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:20px; margin-bottom:8px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(245,200,66,0.6); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">~ With Indicative Marketplace Upside (Model B)</div>
+        <table class="data-table" style="margin-bottom:0;">
+          <thead><tr><th>Period</th><th>Low / Month</th><th>High / Month</th><th>Low Total</th><th>High Total</th></tr></thead>
+          <tbody>
+            <tr class="indicative-row"><td><strong style="color:var(--text)">Per Month</strong></td><td class="c-accent">$118,500</td><td class="c-gold">$1,808,000</td><td style="color:var(--muted)">—</td><td style="color:var(--muted)">—</td></tr>
+            <tr class="indicative-row"><td><strong style="color:var(--text)">Per Year (×12)</strong></td><td class="c-accent">$1,422,000</td><td class="c-gold">$21,696,000</td><td style="color:var(--muted)">—</td><td style="color:var(--muted)">—</td></tr>
+            <tr class="indicative-row"><td><strong style="color:var(--text)">2 Years · Mar 2026 → Mar 2028</strong></td><td class="c-accent">$118,500/mo</td><td class="c-gold">$1,808,000/mo</td><td class="c-accent">$2,844,000</td><td class="c-gold">$43,392,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:28px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:12px;">Implied IP Asset Value · 3–5× ARR Multiple</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:10px; overflow:hidden; border:1px solid var(--border);">
+        <div style="background:var(--card); padding:24px 28px; text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Confirmed ARR Only</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--accent); line-height:1;">$3.5M–$13M</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:6px;">$1.18M–$2.62M ARR × 3–5×<br>subject to formal independent valuation</div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(245,200,66,0.06),rgba(245,200,66,0.01)); padding:24px 28px; text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(245,200,66,0.6); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">~ With Indicative Marketplace</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--gold); line-height:1;">$4.3M–$108M</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:6px;">$1.42M–$21.7M ARR × 3–5×<br>indicative only — marketplace volume not confirmed</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(107,122,150,0.55); font-style:italic; line-height:1.7; padding:12px 16px; background:rgba(245,200,66,0.03); border-radius:6px; border-left:2px solid rgba(245,200,66,0.2);">
+        ~ The $108M ceiling is mathematically accurate at 1,000 users transacting at $10K avg with 15% cut. It is presented as a potential direction only. Achieving it requires confirmed marketplace volume that does not yet exist. The confirmed floor of $3.5M–$13M is the defensible, auditable figure.
+      </div>
+    </div>
+    <ul class="biz-list">
+      <li>Full IP ownership — replication requires a license. Priced above cost-of-build, independently of white-label.</li>
+      <li>White-label licensing to agencies ($2K/mo) and orgs ($10K/mo) — a passive SaaS line, creator anonymous.</li>
+      <li>Builder-as-a-service: same infrastructure, zero marginal cost, pure margin on every licensee build.</li>
+      <li>AI not yet integrated — the largest single remaining lever. Minimum squad, maximum scale.</li>
+      <li>Marketplace natively architected — not retrofitted. Ready to activate as a pure-margin revenue layer.</li>
+      <li>Premium platform experience justifies higher-ticket B2C and elevated retainer pricing at every tier.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 09 PLATFORM -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">09 — Platform Scope</div>
+    <h2>ONE OS.<br>ZERO GAPS.</h2>
+    <div class="modules-wrap" style="margin-bottom: 32px;">
+      <div class="module-tag"><span class="dot"></span> Notion-style Docs</div>
+      <div class="module-tag"><span class="dot"></span> Cold Email</div>
+      <div class="module-tag"><span class="dot"></span> Task Management (per agency)</div>
+      <div class="module-tag"><span class="dot"></span> Slack Communication</div>
+      <div class="module-tag"><span class="dot"></span> GHL Campaigns</div>
+      <div class="module-tag"><span class="dot"></span> Website Builder</div>
+      <div class="module-tag"><span class="dot"></span> Deployment Wizard</div>
+      <div class="module-tag"><span class="dot"></span> File Uploading</div>
+      <div class="module-tag"><span class="dot"></span> AI Marketplace</div>
+      <div class="module-tag"><span class="dot"></span> Client OS (White-label)</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card pink">
+        <span class="card-icon">🏗️</span>
+        <h3>Builder Replaces Lovable</h3>
+        <p>Same output. Same client-facing result. Zero Lovable subscription. GitHub + Vercel hosting at $0/build. Revenue per site: unchanged. Margin: 100%.</p>
+        <div class="metric">$500–$2,000/mo eliminated</div>
+      </div>
+      <div class="card purple">
+        <span class="card-icon">👥</span>
+        <h3>Scale Without Headcount</h3>
+        <p>Eliminates 5–10 roles now. Prevents 25–30 future hires with AI. Every new client adds zero proportional overhead.</p>
+        <div class="metric">Up to –80% headcount need</div>
+      </div>
+      <div class="card accent3">
+        <span class="card-icon">🤖</span>
+        <h3>AI: Largest Lever Untouched</h3>
+        <p>Not yet integrated. When activated: minimal squad, marketplace revenue turns on, and builder-as-a-service scales to pure margin.</p>
+        <div class="metric">Biggest single upside remaining</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 THESIS -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="section-tag">10 — The Core Thesis</div>
+    <h2>MAXIMUM LEVERAGE.<br>MINIMUM FRICTION.</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>Solves Every Problem</h3>
+        <p>One platform. Every operational layer covered. No context switching, no external tools, no gaps — for every role in the org.</p>
+        <div class="metric">Full-stack solution</div>
+      </div>
+      <div class="card accent2">
+        <span class="card-icon">📈</span>
+        <h3>Kills Cost & Creates Revenue</h3>
+        <p>The builder doesn't just eliminate Lovable's cost — it becomes a revenue line. Same infrastructure. Zero marginal cost. New income stream.</p>
+        <div class="metric">Cost killer → revenue generator</div>
+      </div>
+      <div class="card accent3">
+        <span class="card-icon">🚀</span>
+        <h3>Maximum Margins</h3>
+        <p>When the platform sells, onboards, delivers, and hosts — margins expand at every stage. This is the business model, not just the tool.</p>
+        <div class="metric">Margin expansion at scale</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legal-footer">
+  <div class="container">
+    <div class="inner">
+      <strong>⚖ Legal & Compliance Notice</strong>
+      This document contains forward-looking statements and projected financial estimates separated into confirmed (operational benchmark-based) and indicative (illustrative projections marked ~) categories. Confirmed figures do not guarantee future performance. Indicative figures — specifically AI marketplace revenue, builder-as-a-service revenue, and the upper range of Lovable cost savings — are presented to illustrate potential scale only and should not be relied upon for financial planning without independent validation. Lovable cost saving is confirmed at $500+/mo floor; the upper range of $2,000/mo reflects estimated credit usage at 20 builds/month on higher-tier plans and may vary. Builder-as-a-service revenue assumes licensee volumes and pricing not yet contracted. Marketplace model not finalised. IP valuation (confirmed: $3.5M–$13M; indicative with marketplace: $4.3M–$108M) is based on 3–5× ARR multiples applied to monthly output figures in this document — not a formal appraisal or investment offer. This document is for internal strategic planning purposes only and does not constitute a financial prospectus, investment advice, or contractual commitment of any kind.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="inner">
+      <div class="brand">SCALELOGIX</div>
+      <div class="note">// 6 confirmed · 2 indicative · all assumptions disclosed · not a financial offer</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
