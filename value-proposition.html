@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaleLogix — Platform Value Proposition</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #080A0E;
+    --dark: #0D1017;
+    --card: #111620;
+    --border: #1E2736;
+    --accent: #00D4FF;
+    --accent2: #FF6B35;
+    --accent3: #7EFF8A;
+    --text: #E8EDF5;
+    --muted: #6B7A96;
+    --gold: #F5C842;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .compliance-banner {
+    background: rgba(245,200,66,0.06);
+    border-bottom: 1px solid rgba(245,200,66,0.2);
+    padding: 12px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .compliance-banner .inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: rgba(245,200,66,0.7);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+
+  .compliance-banner .inner::before {
+    content: '⚖';
+    font-size: 14px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  h1 span { color: var(--accent); display: block; }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 580px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .disclaimer-inline {
+    font-size: 11px;
+    color: rgba(107,122,150,0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-style: italic;
+    max-width: 580px;
+    line-height: 1.6;
+    padding: 10px 14px;
+    border-left: 2px solid rgba(245,200,66,0.3);
+    background: rgba(245,200,66,0.03);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-item {
+    padding: 36px 28px;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(0,212,255,0.03); }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .stat-value.orange { color: var(--accent2); }
+  .stat-value.green { color: var(--accent3); }
+  .stat-value.gold { color: var(--gold); }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .stat-est {
+    font-size: 10px;
+    color: rgba(107,122,150,0.5);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-tag::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1;
+    margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .data-table th {
+    background: rgba(0,212,255,0.05);
+    padding: 14px 20px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 16px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    vertical-align: middle;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table tr.total-row td {
+    background: rgba(0,212,255,0.04);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .data-table td small { display: block; font-size: 11px; color: rgba(107,122,150,0.6); margin-top: 2px; font-weight: 300; }
+  .data-table td.c-accent { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-green { color: var(--accent3); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-gold { color: var(--gold); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .data-table td.c-orange { color: var(--accent2); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+  .formula {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 16px 0;
+    line-height: 2;
+  }
+
+  .formula .result { color: var(--accent); font-weight: 700; font-size: 15px; }
+  .formula.green { border-left-color: var(--accent3); }
+  .formula.green .result { color: var(--accent3); }
+  .formula.orange { border-left-color: var(--accent2); }
+  .formula.orange .result { color: var(--accent2); }
+  .formula.gold { border-left-color: var(--gold); }
+  .formula.gold .result { color: var(--gold); }
+
+  .conv-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2px;
+    background: var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    align-items: stretch;
+  }
+
+  .conv-cell {
+    background: var(--card);
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  .conv-cell.arrow-cell {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    gap: 8px;
+  }
+
+  .conv-cell.arrow-cell .arr { font-size: 28px; color: var(--accent2); }
+  .conv-cell.arrow-cell .pct { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--accent2); line-height: 1; }
+  .conv-cell.arrow-cell .pct-label { font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-align: center; letter-spacing: 0.08em; }
+
+  .conv-cell .conv-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+  .conv-cell .conv-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; color: var(--muted); }
+  .conv-cell.after .conv-num { color: var(--accent3); }
+  .conv-cell .conv-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  .value-stack {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .value-stack-row {
+    display: grid;
+    grid-template-columns: 1fr 160px 160px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .value-stack-row:hover { background: rgba(255,255,255,0.01); }
+  .value-stack-row:last-child { border-bottom: none; }
+  .value-stack-row.header { background: rgba(0,212,255,0.04); }
+
+  .value-stack-row.header .vs-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+  }
+
+  .value-stack-row.total-row {
+    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(126,255,138,0.04));
+  }
+
+  .vs-cell {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+  }
+
+  .vs-cell:last-child { border-right: none; }
+
+  .vs-cell.label-cell { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .vs-cell.label-cell strong { font-size: 14px; color: var(--text); font-weight: 500; }
+  .vs-cell.label-cell small { font-size: 11px; color: var(--muted); font-weight: 300; }
+
+  .vs-cell.num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    justify-content: flex-end;
+  }
+
+  .vs-cell.num.high { color: var(--accent3); }
+
+  .value-stack-row.total-row .vs-cell.label-cell strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .value-stack-row.total-row .vs-cell.num { font-size: 28px; }
+
+  .big-total {
+    background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(126,255,138,0.04), rgba(245,200,66,0.03));
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 16px;
+    padding: 52px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .big-total::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 200px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .big-total .bt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .big-total .bt-range {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 10vw, 100px);
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .big-total .bt-range span { color: var(--accent3); }
+
+  .big-total .bt-sub {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+
+  .big-total .bt-disclaimer {
+    font-size: 10.5px;
+    color: rgba(107,122,150,0.55);
+    font-family: 'JetBrains Mono', monospace;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    line-height: 1.8;
+    font-style: italic;
+    text-align: left;
+  }
+
+  .ip-block {
+    background: linear-gradient(135deg, rgba(245,200,66,0.06), rgba(245,200,66,0.02));
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 12px;
+    padding: 36px;
+    margin-bottom: 24px;
+  }
+
+  .ip-block h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); margin-bottom: 12px; letter-spacing: 0.04em; }
+  .ip-block p { font-size: 14px; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 680px; }
+  .ip-block .ip-val { margin-top: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); line-height: 1; }
+  .ip-block .ip-val-sub { font-size: 11px; color: rgba(245,200,66,0.5); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+  .card:hover::before { opacity: 1; }
+  .card.accent2::before { background: var(--accent2); }
+  .card.accent3::before { background: var(--accent3); }
+  .card.gold::before { background: var(--gold); }
+  .card-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+  .card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.04em; margin-bottom: 10px; color: var(--text); }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .card .metric { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); background: rgba(0,212,255,0.07); padding: 6px 12px; border-radius: 4px; display: inline-block; }
+  .card.accent2 .metric { color: var(--accent2); background: rgba(255,107,53,0.07); }
+  .card.accent3 .metric { color: var(--accent3); background: rgba(126,255,138,0.07); }
+  .card.gold .metric { color: var(--gold); background: rgba(245,200,66,0.07); }
+
+  .modules-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .module-tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .module-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.05); }
+  .module-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .biz-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .biz-list li { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 12px; font-weight: 300; }
+  .biz-list li::before { content: '→'; color: var(--accent2); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  .legal-footer {
+    background: rgba(245,200,66,0.03);
+    border-top: 1px solid rgba(245,200,66,0.15);
+    padding: 36px 0;
+  }
+
+  .legal-footer .inner {
+    font-size: 10.5px;
+    color: rgba(107,122,150,0.55);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.85;
+    font-style: italic;
+  }
+
+  .legal-footer .inner strong {
+    color: rgba(245,200,66,0.6);
+    font-style: normal;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  .footer { padding: 32px 0; }
+  .footer .inner { display: flex; justify-content: space-between; align-items: center; }
+  .footer .brand { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.1em; color: var(--muted); }
+  .footer .note { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero, .stat-strip, .section { animation: fadeUp 0.6s ease both; }
+
+  @media (max-width: 768px) {
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid { grid-template-columns: 1fr; }
+    .biz-list { grid-template-columns: 1fr; }
+    .conv-grid { grid-template-columns: 1fr; }
+    .value-stack-row { grid-template-columns: 1fr 110px 110px; }
+    h1 { font-size: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="compliance-banner">
+  <div class="container">
+    <div class="inner">
+      FORWARD-LOOKING STATEMENT — All figures represent estimated projections based on operational benchmarks and reasonable assumptions. Not a guarantee of results. For internal strategic planning purposes only. All assumptions disclosed throughout.
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="container">
+    <div class="eyebrow">ScaleLogix — Platform Value Proposition</div>
+    <h1>THE ROI IS<span>UNDENIABLE.</span></h1>
+    <p class="hero-sub">A single proprietary platform that eliminates operational overhead, compresses dev cycles, and creates a premium asset-grade experience — quantified at every layer.</p>
+    <div class="disclaimer-inline">All projections derived from observed operational benchmarks. Conservative and high-case ranges presented throughout. No figures extrapolated beyond reasonable business assumptions.</div>
+  </div>
+</div>
+
+<div class="stat-strip">
+  <div class="stat-item">
+    <span class="stat-value">250h</span>
+    <div class="stat-label">Total Hours Saved / Month</div>
+    <div class="stat-est">est. — all 3 factors combined</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value orange">$68K–$136K</span>
+    <div class="stat-label">Combined Monthly Value</div>
+    <div class="stat-est">est. low–high range</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value green">+15–20%</span>
+    <div class="stat-label">Sales Conversion Uplift</div>
+    <div class="stat-est">est. — platform demo effect</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value gold">$1M–$3M+</span>
+    <div class="stat-label">Estimated IP Asset Value</div>
+    <div class="stat-est">est. — 3–5× ARR multiple</div>
+  </div>
+</div>
+
+<!-- 01 TIME SAVED -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">01 — Time Recovery Analysis</div>
+    <h2>250 HOURS.<br>EVERY MONTH.</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Seconds / Month</th>
+          <th>Minutes / Month</th>
+          <th>Hours / Month</th>
+          <th>Basis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong style="color:var(--text)">Dev Build Time</strong>
+            <small>7.5 hrs saved × 20 builds/month</small>
+          </td>
+          <td class="c-accent">540,000</td>
+          <td class="c-accent">9,000</td>
+          <td class="c-accent">150</td>
+          <td>8 hrs → 30 min per build</td>
+        </tr>
+        <tr>
+          <td>
+            <strong style="color:var(--text)">Maintenance</strong>
+            <small>100 agencies × 10 min manual → eliminated</small>
+          </td>
+          <td class="c-green">60,000</td>
+          <td class="c-green">1,000</td>
+          <td class="c-green">16.7</td>
+          <td>Automated vs manual today</td>
+        </tr>
+        <tr>
+          <td>
+            <strong style="color:var(--text)">Context Switching</strong>
+            <small>20 people × 10 platforms × 5s × 100×/day × 30 days</small>
+          </td>
+          <td class="c-orange">300,000</td>
+          <td class="c-orange">5,000</td>
+          <td class="c-orange">83.3</td>
+          <td>VP, dev, onboarding, task mgr</td>
+        </tr>
+        <tr class="total-row">
+          <td>
+            <strong>TOTAL RECOVERED</strong>
+            <small>per calendar month — est.</small>
+          </td>
+          <td class="c-gold">900,000 sec</td>
+          <td class="c-gold">15,000 min</td>
+          <td class="c-gold">250 hrs</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      250 hours = <span class="result">6.25 full 40-hr working weeks reclaimed every month</span>
+    </div>
+  </div>
+</div>
+
+<!-- 02 LABOR COST -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">02 — Labor Cost Savings</div>
+    <h2>$5K–$10K<br>IN PURE LABOR.</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Hours / Month</th>
+          <th>@ $20/hr (Low)</th>
+          <th>@ $40/hr (High)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--text)">Dev Build Time</strong></td>
+          <td class="c-accent">150</td>
+          <td>$3,000</td>
+          <td class="c-green">$6,000</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Maintenance</strong></td>
+          <td class="c-accent">16.7</td>
+          <td>$334</td>
+          <td class="c-green">$668</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">Context Switching</strong></td>
+          <td class="c-accent">83.3</td>
+          <td>$1,666</td>
+          <td class="c-green">$3,332</td>
+        </tr>
+        <tr class="total-row">
+          <td><strong>TOTAL LABOR SAVED</strong><small>blended rate $20–$40/hr</small></td>
+          <td class="c-gold">250 hrs</td>
+          <td class="c-accent">$5,000 / mo</td>
+          <td class="c-green">$10,000 / mo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula green">
+      Hard cost savings — money not spent. Not opportunity cost, not projection.<br>
+      <span class="result">The platform pays for itself before a single new client signs.</span>
+    </div>
+  </div>
+</div>
+
+<!-- 03 CONVERSION -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">03 — Sales Conversion Uplift</div>
+    <h2>MORE CLOSES.<br>JUST BY SHOWING IT.</h2>
+
+    <div class="conv-grid">
+      <div class="conv-cell">
+        <div class="conv-label">Current Baseline</div>
+        <div class="conv-num">10+</div>
+        <div class="conv-sub">deals / month<br>$30K–$60K one-time · $1.5K–$3K/mo retainer</div>
+      </div>
+      <div class="conv-cell arrow-cell">
+        <div class="arr">→</div>
+        <div class="pct">+15–20%</div>
+        <div class="pct-label">estimated<br>demo effect</div>
+      </div>
+      <div class="conv-cell after">
+        <div class="conv-label">With Platform Demo</div>
+        <div class="conv-num">12–13</div>
+        <div class="conv-sub">deals / month projected<br>conservative floor estimate</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Deals / Month</th>
+          <th>One-Time Revenue</th>
+          <th>New MRR Added</th>
+          <th>Monthly Uplift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--text)">Without Platform</strong></td>
+          <td>10</td>
+          <td>$300K – $600K</td>
+          <td>$15K – $30K</td>
+          <td style="color:var(--muted)">baseline</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--text)">With Platform</strong></td>
+          <td class="c-green">12</td>
+          <td class="c-green">$360K – $720K</td>
+          <td class="c-green">$18K – $36K</td>
+          <td class="c-green">+$60K – $120K</td>
+        </tr>
+        <tr class="total-row">
+          <td><strong>MONTHLY UPLIFT</strong><small>conversion delta only</small></td>
+          <td class="c-gold">+2 deals</td>
+          <td class="c-gold">+$60K–$120K</td>
+          <td class="c-gold">+$3K–$6K/mo</td>
+          <td class="c-gold">compounds monthly</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula orange">
+      MRR uplift compounds — each month adds to the base. The longer the platform runs, the wider the gap.<br>
+      <span class="result">+2 deals/month × 12 months = 24 additional clients acquired through the platform alone.</span>
+    </div>
+  </div>
+</div>
+
+<!-- 04 TOTAL VALUE STACK -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">04 — Total Monthly Value Stack</div>
+    <h2>EVERYTHING<br>COMBINED.</h2>
+
+    <div class="value-stack">
+      <div class="value-stack-row header">
+        <div class="vs-cell">Value Driver</div>
+        <div class="vs-cell">Low Est.</div>
+        <div class="vs-cell">High Est.</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell">
+          <strong>Labor Savings</strong>
+          <small>250 hrs @ $20–$40/hr blended rate</small>
+        </div>
+        <div class="vs-cell num">$5,000</div>
+        <div class="vs-cell num high">$10,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell">
+          <strong>Conversion Uplift — One-Time</strong>
+          <small>+2 deals × $30K–$60K avg ticket</small>
+        </div>
+        <div class="vs-cell num">$60,000</div>
+        <div class="vs-cell num high">$120,000</div>
+      </div>
+      <div class="value-stack-row">
+        <div class="vs-cell label-cell">
+          <strong>Conversion Uplift — New MRR</strong>
+          <small>+2 retainers × $1.5K–$3K/mo</small>
+        </div>
+        <div class="vs-cell num">$3,000</div>
+        <div class="vs-cell num high">$6,000</div>
+      </div>
+      <div class="value-stack-row total-row">
+        <div class="vs-cell label-cell">
+          <strong>TOTAL MONTHLY VALUE</strong>
+          <small>quantified factors only · excludes IP, AI, and marketplace</small>
+        </div>
+        <div class="vs-cell num">$68,000</div>
+        <div class="vs-cell num high">$136,000</div>
+      </div>
+    </div>
+
+    <div class="big-total">
+      <div class="bt-label">Estimated Combined Monthly Value — Conservative to High Range</div>
+      <div class="bt-range">$68K — <span>$136K</span></div>
+      <div class="bt-sub">Per month. From labor savings and conversion uplift alone. AI integration, IP licensing, marketplace revenue, and compounding MRR base are not included in this figure.</div>
+      <div class="bt-disclaimer">
+        ⚖ DISCLOSED ASSUMPTIONS: (1) Blended labour rate of $20–$40/hr across dev, ops, and management; (2) Baseline of 10+ deals/month at $30K–$60K one-time fee + $1.5K–$3K/mo retainer; (3) Conversion uplift of 15–20% attributed to live platform demonstration, consistent with observed SaaS demo conversion effects; (4) Context switching calculated as 20 people × 10 platforms × 5 sec × 100 switches/day × 30 days. All figures are estimated ranges, not guaranteed outcomes. This document does not constitute a financial offering, investment advice, or contractual commitment of any kind.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 IP -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">05 — Intellectual Property Value</div>
+    <h2>YOU OWN<br>THE ASSET.</h2>
+
+    <div class="ip-block">
+      <h3>Proprietary Platform IP</h3>
+      <p>A platform generating $68K–$136K/month in demonstrable value — owned outright, with no third-party dependency — is a fundable, licensable, and acquirable asset. Standard SaaS revenue multiples of 3–5× annualised output place the implied asset value in the range below. This is not a sale price; it is the floor value implied by current output, before AI integration and marketplace revenue.</p>
+      <div class="ip-val">$1M – $3M+</div>
+      <div class="ip-val-sub">estimated implied asset value · 3–5× ARR multiple · subject to formal independent valuation · not a guaranteed figure</div>
+    </div>
+
+    <ul class="biz-list">
+      <li>Full IP ownership — replication requires a license. Priced well above cost-of-build, independently of white-label.</li>
+      <li>White-label licensing as a standalone B2B SaaS revenue line — the creator remains anonymous.</li>
+      <li>Client-within-client architecture enables a second monetisation layer via marketplace dynamics.</li>
+      <li>AI has not been integrated yet — the largest single lever remains untouched. Minimum team, maximum scale.</li>
+      <li>Async AI marketplace designed natively — not retrofitted. Ready to activate as a revenue stream.</li>
+      <li>Premium platform experience justifies higher-ticket B2C deals and elevated monthly retainer pricing.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 06 PLATFORM -->
+<div class="section">
+  <div class="container">
+    <div class="section-tag">06 — Platform Scope</div>
+    <h2>ONE OS.<br>ZERO GAPS.</h2>
+
+    <div class="modules-wrap" style="margin-bottom: 32px;">
+      <div class="module-tag"><span class="dot"></span> Notion-style Docs</div>
+      <div class="module-tag"><span class="dot"></span> Cold Email</div>
+      <div class="module-tag"><span class="dot"></span> Task Management (per agency)</div>
+      <div class="module-tag"><span class="dot"></span> Slack Communication</div>
+      <div class="module-tag"><span class="dot"></span> GHL Campaigns</div>
+      <div class="module-tag"><span class="dot"></span> Website Builder</div>
+      <div class="module-tag"><span class="dot"></span> Deployment Wizard</div>
+      <div class="module-tag"><span class="dot"></span> File Uploading</div>
+      <div class="module-tag"><span class="dot"></span> AI Marketplace</div>
+      <div class="module-tag"><span class="dot"></span> Client OS (White-label)</div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card gold">
+        <span class="card-icon">💎</span>
+        <h3>Premium Client Feel</h3>
+        <p>Clients receive a branded OS. The ScaleLogix experience. Justifies premium retainers and elevates perceived value at every touchpoint.</p>
+        <div class="metric">Retainer justification ↑</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h3>Minimum Dev. Max Value.</h3>
+        <p>Scalable and expandable with negligible incremental overhead. Each added feature compounds platform value without linear cost growth.</p>
+        <div class="metric">Compounding build ROI</div>
+      </div>
+      <div class="card accent3">
+        <span class="card-icon">🤖</span>
+        <h3>AI: Largest Lever Untouched</h3>
+        <p>Not integrated yet. When it is, the platform runs with a minimal squad. This upside alone dwarfs every quantified figure in this document.</p>
+        <div class="metric">Untapped — biggest upside</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 THESIS -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="section-tag">07 — The Core Thesis</div>
+    <h2>MAXIMUM LEVERAGE.<br>MINIMUM FRICTION.</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>Solves Every Problem</h3>
+        <p>One platform. Every operational layer covered. No context switching, no external tools, no gaps — for every role in the org.</p>
+        <div class="metric">Full-stack solution</div>
+      </div>
+      <div class="card accent2">
+        <span class="card-icon">📈</span>
+        <h3>Minimum Effort</h3>
+        <p>Expandable with negligible incremental dev overhead. Every addition multiplies platform value without proportional cost.</p>
+        <div class="metric">Compounding returns</div>
+      </div>
+      <div class="card accent3">
+        <span class="card-icon">🚀</span>
+        <h3>Maximum Margins</h3>
+        <p>When the platform sells, onboards, and delivers — margins expand at every stage. This is the business model, not just the tool.</p>
+        <div class="metric">Margin expansion at scale</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legal-footer">
+  <div class="container">
+    <div class="inner">
+      <strong>⚖ Legal & Compliance Notice</strong>
+      This document contains forward-looking statements and projected financial estimates based on reasonable operational assumptions as of the date of preparation. These projections are illustrative only and do not constitute a guarantee, warranty, or representation of actual future performance. The figures presented — including time savings, labour cost estimates, conversion rate uplifts, and revenue projections — are based on internally observed operational benchmarks and publicly comparable SaaS/platform industry data. All key assumptions are explicitly disclosed within the document. Actual results will vary based on market conditions, team execution, client acquisition rates, pricing strategy, and other variable factors. The IP valuation range cited ($1M–$3M+) is an informal estimate based on standard SaaS revenue multiples and does not constitute a formal appraisal, financial advice, or investment offer. This document is prepared for internal strategic planning and presentation purposes only. It does not constitute a financial prospectus or contractual commitment of any kind. Recipients should conduct their own independent assessment before making decisions based on any figures contained herein.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="inner">
+      <div class="brand">SCALELOGIX</div>
+      <div class="note">// all assumptions disclosed · figures are estimates · not a financial offer</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
